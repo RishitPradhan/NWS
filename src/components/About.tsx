@@ -45,15 +45,15 @@ export default function About() {
           <div className={styles.statsRow}>
             <div className={styles.stat}>
               <span className={styles.statValue}>2022</span>
-              <span className={styles.statLabel}>// ESTABLISHED</span>
+              <span className={styles.statLabel}>{'// ESTABLISHED'}</span>
             </div>
             <div className={styles.stat}>
               <span className={styles.statValue}>BBS</span>
-              <span className={styles.statLabel}>// LOCATION</span>
+              <span className={styles.statLabel}>{'// LOCATION'}</span>
             </div>
             <div className={styles.stat}>
               <span className={styles.statValue}>A</span>
-              <span className={styles.statLabel}>// CLASS</span>
+              <span className={styles.statLabel}>{'// CLASS'}</span>
             </div>
           </div>
         </div>
