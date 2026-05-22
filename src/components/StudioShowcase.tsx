@@ -100,11 +100,16 @@ export default function StudioShowcase({ products }: ShowcaseProps) {
 
   return (
     <section className={styles.section} id="showcase">
+      {/* ── Grain overlay ── */}
+      <div className={styles.grain} aria-hidden="true" />
       <div className={styles.maxContainer}>
         {/* Section header row */}
         <div className={`${styles.headerRow} reveal-up`}>
           <div className={styles.titleContainer}>
-            <div className={styles.arsenalBadge}>[ ARSENAL_DB ]</div>
+            <div className={styles.arsenalBadge}>
+              <span className={styles.arsenalDot} />
+              [ ARSENAL_DB ]
+            </div>
             <h2 className={`${styles.h2} stretch-text`}>The Tools.</h2>
           </div>
           <div className={styles.navBtns}>

@@ -5,6 +5,67 @@
   background-color: #0a0a0a;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 -30px 50px -10px rgba(0, 0, 0, 0.9);
+  overflow: hidden;
+}
+
+/* ── Breathing red glow (off-center, feels like a studio spotlight) ── */
+.section::before {
+  content: '';
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  height: 65vh;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 0, 51, 0.09) 0%,
+    rgba(180, 0, 35, 0.04) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(12px);
+  animation: scGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes scGlow {
+  0%   { opacity: 0.5; transform: translate(-50%, -50%) scale(0.92); }
+  100% { opacity: 1.0; transform: translate(-50%, -50%) scale(1.10); }
+}
+
+/* ── Drifting diagonal grid ── */
+.section::after {
+  content: '';
+  position: absolute;
+  inset: -80%;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    rgba(255, 255, 255, 0.022) 0px,
+    rgba(255, 255, 255, 0.022) 1px,
+    transparent 1px,
+    transparent 56px
+  );
+  animation: scGridDrift 26s linear infinite;
+}
+
+@keyframes scGridDrift {
+  0%   { transform: translate(0, 0); }
+  100% { transform: translate(56px, 56px); }
+}
+
+/* ── Grain overlay ── */
+.grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  mix-blend-mode: overlay;
 }
 
 .maxContainer {
@@ -32,22 +93,38 @@
 
 .arsenalBadge {
   font-family: var(--font-mono);
-  color: rgba(255, 255, 255, 0.3);
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 9999px;
+  color: var(--brand-red);
+  background-color: rgba(255, 0, 51, 0.08);
+  border-left: 2px solid var(--brand-red);
   padding: 6px 16px;
   width: fit-content;
-  font-size: 10px;
-  letter-spacing: 0.4em;
+  font-size: 9px;
+  letter-spacing: 0.45em;
   text-transform: uppercase;
-  font-weight: 400;
-  margin-bottom: 8px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.arsenalDot {
+  width: 6px;
+  height: 6px;
+  background: var(--brand-red);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: arsenalBlink 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes arsenalBlink {
+  0%   { opacity: 0.3; }
+  100% { opacity: 1.0; }
 }
 
 .h2 {
   font-family: var(--font-sora);
-  font-size: 50px; /* text-[50px] */
+  font-size: 50px;
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: white;
@@ -55,11 +132,14 @@
   text-transform: uppercase;
   font-style: italic;
   opacity: 0.9;
+  mix-blend-mode: difference;
+  position: relative;
+  z-index: 10;
 }
 
 @media (min-width: 768px) {
   .h2 {
-    font-size: 90px;
+    font-size: 96px;
   }
 }
 
@@ -129,7 +209,33 @@
 }
 
 .mainFeatureCard:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 0, 51, 0.3);
+  box-shadow: 0 0 60px rgba(255, 0, 51, 0.06), inset 0 0 40px rgba(255, 0, 51, 0.03);
+}
+
+/* Scan-line sweep on main card */
+.mainFeatureCard::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.018) 50%,
+    transparent
+  );
+  pointer-events: none;
+  z-index: 20;
+  animation: scanLine 6s cubic-bezier(0.4,0,0.6,1) infinite;
+  animation-delay: 1.5s;
+}
+
+@keyframes scanLine {
+  0%   { top: -40%; }
+  100% { top: 140%; }
 }
 
 .techGridBg {
@@ -170,7 +276,13 @@
 }
 
 .specsActive {
-  color: #22c55e;
+  color: #4ade80;
+  animation: activeGlow 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes activeGlow {
+  0%   { text-shadow: 0 0 4px rgba(74, 222, 128, 0.4); }
+  100% { text-shadow: 0 0 12px rgba(74, 222, 128, 0.9); }
 }
 
 .gradientVisual {
@@ -284,8 +396,11 @@
 }
 
 .smallCard:hover {
-  background: rgba(255, 255, 255, 0.05); /* hover:bg-white/5 */
-  border-color: rgba(255, 255, 255, 0.05); /* border doesn't change color in tailwind version */
+  background: rgba(255, 0, 51, 0.04);
+  border-color: rgba(255, 0, 51, 0.2);
+  border-top: 2px solid var(--brand-red);
+  box-shadow: 0 0 30px rgba(255, 0, 51, 0.06);
+  transform: translateY(-2px);
 }
 
 .smallCardHeader {

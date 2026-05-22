@@ -33,9 +33,10 @@
 
 .marqueeRow {
   display: flex;
-  overflow: hidden;
   white-space: nowrap;
   padding: 3px 0;
+  overflow: visible;
+  width: max-content;
 }
 
 .marqueeRow > span {
@@ -47,6 +48,10 @@
   line-height: 1;
   white-space: nowrap;
   will-change: transform;
+  flex-shrink: 0;
+  /* Wide enough to cover the viewport even after the -5deg rotation + 1.1 scaleX */
+  min-width: 200vw;
+  padding-right: 2em;
 }
 
 .marqueeLeft > span {
@@ -58,12 +63,13 @@
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.12);
 }
 
+/* Animate the ROW (which contains 2 identical spans = 200% width) */
 .marqueeLeft {
-  animation: scrollLeft 12s linear infinite;
+  animation: scrollLeft 18s linear infinite;
 }
 
 .marqueeRight {
-  animation: scrollRight 15s linear infinite;
+  animation: scrollRight 22s linear infinite;
 }
 
 @keyframes scrollLeft {

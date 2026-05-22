@@ -48,6 +48,8 @@ export default function Services() {
       <div className={styles.hugeBgText}>
         SERVICES_SYS
       </div>
+      {/* Grain overlay */}
+      <div className={styles.grain} aria-hidden="true" />
 
       <div className="max-w-container">
         <div className={`${styles.headerContainer} reveal-up`}>

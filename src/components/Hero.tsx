@@ -29,7 +29,7 @@ export default function Hero() {
         style={{ transform: 'rotate(6deg) scale(1.1) translateY(calc(var(--scroll-offset, 0) * 0.2px))' }}
       >
         <img 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXDc26KKxo8sgSN1M1rFqOSwjP-1IHNdXRO8VzweqYYPMrJ_i-ysycAJ6ldDqFt3jkIrauGP99ZFBwYvn2rCH9tJP7cgmZsItaR7sTkNImwbV7CmNfAFpyYxjazhYyTT_9TR8_ykgz1PVvZkWlym2QiG7I0PdNS0TpUVvBfS9Z7s-m-nUw2J0Zw5h9uM2lHviWB9pX9ID59KTRNVdwDbajwBDInQvSNdjgh8SXCThG2Q-Y1XJuwzGLx1lVDANL1wZ-E5XdPMvMvQ0" 
+          src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=100&w=2560&auto=format&fit=crop" 
           alt="Next Wave Studios Base" 
           className={styles.bgImage} 
         />
@@ -43,7 +43,7 @@ export default function Hero() {
           style={{ transform: 'rotate(6deg) scale(1.1) translateY(calc(var(--scroll-offset, 0) * 0.2px))' }}
         >
           <img 
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXDc26KKxo8sgSN1M1rFqOSwjP-1IHNdXRO8VzweqYYPMrJ_i-ysycAJ6ldDqFt3jkIrauGP99ZFBwYvn2rCH9tJP7cgmZsItaR7sTkNImwbV7CmNfAFpyYxjazhYyTT_9TR8_ykgz1PVvZkWlym2QiG7I0PdNS0TpUVvBfS9Z7s-m-nUw2J0Zw5h9uM2lHviWB9pX9ID59KTRNVdwDbajwBDInQvSNdjgh8SXCThG2Q-Y1XJuwzGLx1lVDANL1wZ-E5XdPMvMvQ0" 
+            src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=100&w=2560&auto=format&fit=crop" 
             alt="Next Wave Studios Colored" 
             className={styles.bgImageColored} 
           />
