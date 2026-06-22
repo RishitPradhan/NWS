@@ -1,32 +1,41 @@
 .section {
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 0;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
-  padding-top: 96px;
+  padding-top: 80px;
   overflow: hidden;
   border-b: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+@media (min-width: 768px) {
+  .section {
+    position: sticky;
+    padding-top: 96px;
+  }
+}
+
 .bgImageContainer {
   position: absolute;
-  right: -10vw;
+  right: -20vw;
   top: -10vh;
-  width: 70vw;
+  width: 140vw;
   height: 120vh;
   z-index: 0;
-  opacity: 0.2;
+  opacity: 0.15;
   mix-blend-mode: screen;
-  display: none;
   transform: rotate(6deg) scale(1.1);
   pointer-events: none;
 }
 
 @media (min-width: 768px) {
   .bgImageContainer {
-    display: block;
+    right: -10vw;
+    width: 70vw;
+    opacity: 0.2;
   }
 }
 
@@ -108,7 +117,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 32px;
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 @media (min-width: 768px) {
@@ -135,18 +144,30 @@
 .techOverlay {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 24px;
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 8px;
   color: var(--brand-red);
   font-weight: 900;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   background: rgba(0, 0, 0, 0.8);
-  padding: 8px 16px;
+  padding: 8px 12px;
   border-left: 2px solid var(--brand-red);
   width: fit-content;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+  .techOverlay {
+    gap: 16px;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    padding: 8px 16px;
+  }
 }
 
 .recDot {
@@ -164,8 +185,8 @@
 
 .h1 {
   font-family: var(--font-sora);
-  font-size: 56px;
-  line-height: 0.85;
+  font-size: 42px;
+  line-height: 0.9;
   color: white;
   margin-bottom: 24px;
   letter-spacing: -0.04em;
@@ -176,37 +197,53 @@
   z-index: 20;
 }
 
+@media (min-width: 480px) {
+  .h1 {
+    font-size: 56px;
+  }
+}
+
 @media (min-width: 768px) {
   .h1 {
     font-size: 110px;
+    line-height: 0.85;
   }
 }
 
 .h1Bg {
   position: absolute;
-  right: -10%;
-  top: -20%;
-  font-size: 140px;
+  right: -5%;
+  top: -10%;
+  font-size: 80px;
   font-weight: 900;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.05);
   color: transparent;
   pointer-events: none;
   user-select: none;
   z-index: 0;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
   .h1Bg {
+    right: -10%;
+    top: -20%;
     font-size: 260px;
   }
 }
 
 .mlRow1 {
-  margin-left: 10%;
+  margin-left: 5%;
+}
+
+@media (min-width: 768px) {
+  .mlRow1 {
+    margin-left: 10%;
+  }
 }
 
 .mlRow2 {
-  margin-left: 2%;
+  margin-left: 0;
 }
 
 @media (min-width: 768px) {
@@ -216,7 +253,7 @@
 }
 
 .mlRow3 {
-  margin-left: 10%;
+  margin-left: 5%;
   text-shadow: 0 0 40px rgba(255, 0, 51, 0.2);
 }
 
@@ -229,22 +266,24 @@
 .imageRow {
   display: flex;
   align-items: center;
-  gap: 16px;
-  margin-left: 5%;
+  gap: 12px;
+  margin-left: 0;
 }
 
 @media (min-width: 768px) {
   .imageRow {
+    gap: 16px;
     margin-left: 10%;
   }
 }
 
 .spinLogo {
-  width: 64px;
-  height: 64px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   opacity: 0.8;
   animation: spinLogoAnim 20s linear infinite;
+  flex-shrink: 0;
 }
 
 @media (min-width: 768px) {
@@ -302,15 +341,23 @@
   font-family: var(--font-mono);
   font-size: 11px;
   color: rgba(255, 255, 255, 0.7);
-  max-w: 380px;
+  max-width: 100%;
   border-left: 2px solid var(--brand-red);
-  padding: 16px 24px;
+  padding: 16px;
   line-height: 1.6;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: bold;
   background: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(4px);
+}
+
+@media (min-width: 768px) {
+  .desc {
+    max-width: 380px;
+    padding: 16px 24px;
+    letter-spacing: 0.15em;
+  }
 }
 
 .rightCol {
