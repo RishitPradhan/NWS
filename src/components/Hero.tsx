@@ -7,18 +7,33 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let animationFrameId: number;
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const scrollY = window.scrollY;
-      if (scrollY <= window.innerHeight) {
-        sectionRef.current.style.setProperty('--scroll-offset', `${scrollY}`);
+      lastScrollY = window.scrollY;
+      
+      if (!animationFrameId) {
+        animationFrameId = window.requestAnimationFrame(() => {
+          if (sectionRef.current && lastScrollY <= window.innerHeight * 1.5) {
+            sectionRef.current.style.setProperty('--scroll-offset', `${lastScrollY}`);
+          }
+          animationFrameId = 0;
+        });
       }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initialize offset on mount
     handleScroll();
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (animationFrameId) {
+        window.cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   return (
@@ -26,7 +41,7 @@ export default function Hero() {
       {/* Background visual asset (B&W Base) */}
       <div 
         className={styles.bgImageContainer}
-        style={{ transform: 'rotate(6deg) scale(1.1) translateY(calc(var(--scroll-offset, 0) * 0.2px))' }}
+        style={{ transform: 'rotate(6deg) scale(1.1) translate3d(0, calc(var(--scroll-offset, 0) * 0.2px), 0)', willChange: 'transform' }}
       >
         <img 
           src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=100&w=2560&auto=format&fit=crop" 
@@ -40,7 +55,7 @@ export default function Hero() {
       <div className={styles.flashlightMaskContainer}>
         <div 
           className={`${styles.bgImageContainer} ${styles.coloredContainerOverride}`}
-          style={{ transform: 'rotate(6deg) scale(1.1) translateY(calc(var(--scroll-offset, 0) * 0.2px))' }}
+          style={{ transform: 'rotate(6deg) scale(1.1) translate3d(0, calc(var(--scroll-offset, 0) * 0.2px), 0)', willChange: 'transform' }}
         >
           <img 
             src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=100&w=2560&auto=format&fit=crop" 
@@ -59,8 +74,9 @@ export default function Hero() {
       <div 
         className={styles.gridContainer}
         style={{ 
-          transform: 'translateY(calc(var(--scroll-offset, 0) * 0.4px))',
-          opacity: 'calc(1 - (var(--scroll-offset, 0) / 700))'
+          transform: 'translate3d(0, calc(var(--scroll-offset, 0) * 0.4px), 0)',
+          opacity: 'calc(1 - (var(--scroll-offset, 0) / 700))',
+          willChange: 'transform, opacity'
         }}
       >
         <div className={`${styles.leftCol} reveal-left`}>
